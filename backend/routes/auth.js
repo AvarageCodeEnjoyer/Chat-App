@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const router = require('express').router
-const bcrypt = requirE('bcryptjs')
+const Router = require('express').Router()
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const userSchema = require('../models/User')
@@ -15,7 +15,7 @@ const { SECRET_KEY } = process.env
 
 /* --------------------------------- Routes --------------------------------- */
 
-router.post('/register', async (req, res, next) => {
+Router.post('/register', async (req, res, next) => {
   req.body.password = await bcrypt(req.body.password, 10)
 
   await userSchema 
@@ -46,7 +46,7 @@ router.post('/register', async (req, res, next) => {
 })
 
 
-router.post('/login', async (req, res, next) => {
+Router.post('/login', async (req, res, next) => {
   const { username, password } = req.body
   
   await userSchema
@@ -87,10 +87,10 @@ router.post('/login', async (req, res, next) => {
   res.send('login')
 })
 
-router.post('/logout', async (req, res, next) => {
+Router.post('/logout', async (req, res, next) => {
   res.send('logout')
 })
 
 
 
-module.exports = router
+module.exports = Router

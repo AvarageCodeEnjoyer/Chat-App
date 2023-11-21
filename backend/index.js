@@ -2,19 +2,19 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-require('dotenv').config
+require('dotenv').config()
 
 /* -------------------------------- ENV data -------------------------------- */
 
 const PORT = process.env.PORT || 4000
-const { MONGO_URL, SECRET_KEY } = process.env
+const MONGO_URL = process.env.MONGO_URL
 
 const initSocket = require('./socket/index')
 
 const app = express()
 
 const authRoutes = require('./routes/auth')
-const userRoutes = require('./routes/user')
+const userRoutes = require('./routes/users')
 
 const authMiddleware = require('./middleware/authMiddleware')
 
