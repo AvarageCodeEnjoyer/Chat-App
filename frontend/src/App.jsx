@@ -1,34 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
+import { baseURL } from './util'
 import './App.css'
 
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Rooms from './pages/Rooms'
+import SignUp from './pages/SignUp'
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState()
+  const [cookies, setCookies, removeCookie] = useCookies(["token"])
+
+  useEffect(() => {
+    setUser()
+    const verifyCookie = async () => {
+      if (cookies.token && cookies.token !== undefined) {
+        await axios.post(`${baseURL}/`, {}, { withCredentials: true })
+          .then(res => {
+            setUser(res.data.user)
+          })
+          .catch(err => {
+            console.error(err)
+          })
+      }
+    }
+
+    verifyCookie()
+  }, [cookies, removeCookie])
+
+  const logout = () => {
+    removeCookie("token")
+    setUser()
+  }
 
   return (
-    <>
+    <BrowserRouter>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <Routes>
+          <Route path="/" element={user ? <Home user={user} logout={logout} /> : <Navigate to="/login" replace={true} />}></Route>
+          <Route path="/create-room" element={user ? <Rooms user={user} logout={logout} /> : <Navigate to="/login" replace={true} />}></Route>
+          <Route path="/login" element={user ?  <Navigate to="/" replace={true} />: <Login setUser={setUser} /> }></Route>
+          <Route path="/signup" element={user ?  <Navigate to="/" replace={true} />: <SignUp setUser={setUser} /> }></Route>
+        </Routes>
+      </div>  
+    </BrowserRouter> 
   )
 }
 
