@@ -16,7 +16,7 @@ const { SECRET_KEY } = process.env
 /* --------------------------------- Routes --------------------------------- */
 
 Router.post('/register', async (req, res, next) => {
-  req.body.password = await bcrypt(req.body.password, 10)
+  req.body.password = await bcrypt.hash(req.body.password, 10)
 
   await userSchema 
     .create(req.body)
@@ -42,7 +42,7 @@ Router.post('/register', async (req, res, next) => {
       console.log(`Register Error`)
       return next(err.message)
     })
-  res.send('register')
+  // res.send('register')
 })
 
 
@@ -84,7 +84,7 @@ Router.post('/login', async (req, res, next) => {
       console.log(`login Error`)
       return next(err.message)
     })
-  res.send('login')
+  // res.send('login')
 })
 
 Router.post('/logout', async (req, res, next) => {

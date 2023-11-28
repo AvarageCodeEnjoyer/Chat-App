@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import Header from '../components/Header'
 import RoomMembers from '../components/RoomMembers'
-import CreateRoom from '../components/CreateRoom'
+import CreateRoom from '../components/CreateRooms'
 
 const Rooms = ({ user, logout }) => {
   const [err, setErr] = useState()

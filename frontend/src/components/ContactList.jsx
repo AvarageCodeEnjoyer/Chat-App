@@ -7,7 +7,7 @@ const ContactList = ({ user, setOpenChat }) => {
   const [showRooms, setShowRooms] = useState(true)
 
   const [userList, setUserList] = useState([])
-  const [userRooms, setRoomsList] = useState([])
+  const [roomList, setRoomsList] = useState([])
 
   const fetchUsers = async () => {
     axios.get(`${baseURL}/users/${user._id}/contacts`, { withCredentials: true })

@@ -5,9 +5,8 @@ import ChatBody from './ChatBody'
 
 import { io } from "socket.io-client"
 import { baseURL } from '../util/index'
-import { set } from 'mongoose'
 
-const OpenMessages = ({ openChat, user }) => {
+const OpenChat = ({ openChat, user }) => {
   const [messages, setMessages] = useState([])
 
   const socket = useRef()
