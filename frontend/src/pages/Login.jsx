@@ -9,7 +9,7 @@ const Login = ({ setUser }) =>{
         password: ""
     });
 
-    const[err,setErr] = useState()
+    const[err, setErr] = useState()
 
     const handleChange = (event) =>{
         setErr();

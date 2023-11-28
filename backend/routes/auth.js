@@ -11,7 +11,7 @@ const authMiddleware = require('../middleware/authMiddleware')
 
 const { SECRET_KEY } = process.env
 
-// All user routes start with /users
+// All auth routes start with /auth
 
 /* --------------------------------- Routes --------------------------------- */
 
@@ -76,6 +76,7 @@ Router.post('/login', async (req, res, next) => {
         withCredentials: true,
         httpOnly: false 
       })
+      res.status(200).json(user)
     })
     .catch(err => {
       res.json({

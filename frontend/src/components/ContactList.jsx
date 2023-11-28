@@ -75,7 +75,7 @@ const ContactList = ({ user, setOpenChat }) => {
   useEffect(() => {
     fetchUsers()
     fetchRooms()
-  })
+  }, [])
   
   return (
     <div id="contactsList">
