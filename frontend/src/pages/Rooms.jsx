@@ -13,7 +13,7 @@ const Rooms = ({ user, logout }) => {
       <Header username={user.username} logout={logout} link={"/"} icon={"bi-wechat"} />
       <div id="rooms">
         <RoomMembers user={user} setErr={setErr} selectedUsers={selectedUsers} setSelectedUsers={setSelectedUsers} />
-        <CreateRoom user={user} setErr={setErr} setSelectedUsers={setSelectedUsers} />
+        <CreateRoom user={user} setErr={setErr} selectedUsers={selectedUsers} />
       </div>
     </>
   )

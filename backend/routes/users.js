@@ -65,6 +65,9 @@ Router.get('/messages/:chatId', async (req, res, next) => {
 
 
 Router.post('/message', async (req, res, next) => {
+  if (!req.body.message) return res.json({
+    Error: "Needed text for message"
+  })
   await messageSchema
     .create(req.body)
     .then(message => {

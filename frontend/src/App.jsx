@@ -40,10 +40,10 @@ function App() {
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/" element={user ? <Home user={user} logout={logout} /> : <Navigate to="/login" replace={true} />}></Route>
-          <Route path="/create-room" element={user ? <Rooms user={user} logout={logout} /> : <Navigate to="/login" replace={true} />}></Route>
-          <Route path="/login" element={user ?  <Navigate to="/" replace={true} />: <Login setUser={setUser} /> }></Route>
-          <Route path="/signup" element={user ?  <Navigate to="/" replace={true} />: <SignUp setUser={setUser} /> }></Route>
+          <Route path="/" element={user ? <Home user={user} logout={logout} /> : <Navigate to="/login" replace={true} />} />
+          <Route path="/create-room" element={user ? <Rooms user={user} logout={logout} /> : <Navigate to="/login" replace={true} />} />
+          <Route path="/login" element={user ?  <Navigate to="/" replace={true} /> : <Login setUser={setUser} /> } />
+          <Route path="/signup" element={user ?  <Navigate to="/" replace={true} />: <SignUp setUser={setUser} /> } />
         </Routes>
       </div>  
     </BrowserRouter> 

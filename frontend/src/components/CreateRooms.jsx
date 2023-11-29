@@ -38,11 +38,11 @@ const CreateRoom = ({ user, err, setErr, selectedUsers}) => {
         <div className='form-wrapper' id='createRoom'>
             <div className='container'>
                 <h1>Create Room</h1>
-                [err && 
+                {err && 
                 <div className='err'>
                     <p>{err}</p>
                 </div>
-                ]
+}
                 <form onAbort={handleSubmit}>
                     <input
                     type='text'

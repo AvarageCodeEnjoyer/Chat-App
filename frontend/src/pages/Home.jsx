@@ -9,7 +9,7 @@ const Home = ({ user, logout }) => {
 
     return(
         <>
-        <Header username={user.username} logout={logout} lin={'/create-room'} 
+        <Header username={user.username} logout={logout} link={'/create-room'} 
         icon={"bi-person-plus-fill"} />
         <div id="chats">
             <ContactsList user={user} setOpenChat={setOpenChat}/>

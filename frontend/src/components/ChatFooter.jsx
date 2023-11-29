@@ -7,6 +7,7 @@ const ChatFooter = ({ openChat, socket, user, setMessages }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (!message) return
         const newMessage = {
             sender:user._id,
             message,
@@ -21,20 +22,20 @@ const ChatFooter = ({ openChat, socket, user, setMessages }) => {
 
         await axios.post(`${baseURL}/users/message`, newMessage).then((res)=>{
             console.log(res.data.message);
-            setMessages((prev)=>[...prev,res.data.message]);
+            setMessages((prev)=>[...prev,res.data.message])
         }).catch(err => console.log(err))
-        setMessage("");
+        setMessage("")
     }
 
     return(
         <div className="chat-footer">
             <form className='form' onSubmit={handleSubmit}>
                 <input
-                type="text"
-                placeholder="Type a message..."
-                className='message'
-                value={message}
-                onChange={e => setMessage(e.target.value)}
+                  type="text"
+                  placeholder="Type a message..."
+                  className='message'
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
                 />
                 <button className='sendBtn'><i className='bi bi-send-fill'></i></button>   
             </form>

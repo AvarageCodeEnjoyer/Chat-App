@@ -17,7 +17,7 @@ const initSocket = (server, corsOptions) => {
 
   io.on("connection", (socket) => {
     socket.on('addUser', userId => {
-      addUser(userId, socketId)
+      addUser(userId, socket.id)
     })
 
     socket.on("sendMessage", ({ sender, receivers, message }) => {
@@ -32,7 +32,7 @@ const initSocket = (server, corsOptions) => {
       })
     })
     socket.on("disconnect", () => {
-      removeUser(socketId)
+      removeUser(socket.id)
     })
   })
 }
