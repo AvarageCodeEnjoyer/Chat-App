@@ -7,7 +7,7 @@ const CreateRoom = ({ user, err, setErr, selectedUsers}) => {
     const [roomName, setRoomName] =useState("");
 
     let navigate = useNavigate()
-
+    console.log(selectedUsers)
     const handleSubmit = (event) =>{ 
         event.preventDefault();
 
@@ -43,7 +43,7 @@ const CreateRoom = ({ user, err, setErr, selectedUsers}) => {
                     <p>{err}</p>
                 </div>
 }
-                <form onAbort={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <input
                     type='text'
                     placeholder="Enter your room name..."

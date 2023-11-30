@@ -7,9 +7,7 @@ const ChatBody = ({ openChat, user, messages }) => {
     useEffect(() =>{
         const getMembers = () => {
             openChat.members.map(async (memberId) => {
-                console.log('members')
                 await axios.get(`${baseURL}/users/${memberId}`).then((res)=>{
-                    console.log(res.data)
                     if (res.data.user) {
                         setMembers((prev) => ({
                             ...prev,
