@@ -14,6 +14,8 @@ const chatSchema = new Schema({
     type: String,
     enum: ["private", "room"]
   }
+}, {
+  timestamps: true
 })
 
 module.exports = mongoose.model("Chat", chatSchema)

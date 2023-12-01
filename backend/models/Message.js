@@ -14,6 +14,8 @@ const messageSchema = new Schema({
   chatId: {
     type: String
   }
+}, {
+  timestamps: true
 })
 
 module.exports = mongoose.model("Message", messageSchema)
